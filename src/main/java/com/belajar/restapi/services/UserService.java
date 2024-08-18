@@ -15,7 +15,7 @@ public class UserService {
     private UserRepo userRepo;
 
     //if data exists in database then the data will be updated, if not then it will be created
-    public User create (User user) {
+    public User save (User user) {
         return userRepo.save(user);
     }
 
