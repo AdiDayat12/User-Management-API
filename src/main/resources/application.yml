@@ -1,1 +1,11 @@
-spring.application.name=restapi
+spring:
+  application:
+    name: restapi
+  datasource:
+    url: jdbc:mysql://localhost:3306/contoh
+    username: root
+    password: StrP455
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update

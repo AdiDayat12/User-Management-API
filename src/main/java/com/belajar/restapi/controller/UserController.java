@@ -14,9 +14,10 @@ public class UserController {
 
     //create new user
     @PostMapping
-    public User create (User user) {
+    public User create(@RequestBody User user) {
         return userService.save(user);
     }
+
 
     //update
     @PutMapping
