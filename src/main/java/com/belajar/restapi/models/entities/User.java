@@ -1,5 +1,7 @@
 package com.belajar.restapi.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -10,6 +12,7 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 
 @Entity
 @Data
@@ -34,10 +37,16 @@ public class User implements Serializable {
     @Size(min = 8)
     private String password;
 
-    @OneToOne()
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "profileID")
+    @JsonManagedReference
     private Profile profile_fk;
 
+
     @OneToMany(mappedBy = "user_fk", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<Comment> commentList = new ArrayList<>();
+
+
 }
+
