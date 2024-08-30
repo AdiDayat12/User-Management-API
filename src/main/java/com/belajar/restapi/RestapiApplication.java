@@ -1,7 +1,9 @@
 package com.belajar.restapi;
 
 import com.belajar.restapi.dto.AddressDto;
+import com.belajar.restapi.dto.ProfileData;
 import com.belajar.restapi.models.entities.Address;
+import com.belajar.restapi.models.entities.Profile;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
 import org.springframework.boot.SpringApplication;
@@ -18,15 +20,6 @@ public class RestapiApplication {
 	@Bean
 	public ModelMapper modelMapper() {
 		ModelMapper modelMapper = new ModelMapper();
-		modelMapper.addMappings(new PropertyMap<AddressDto, Address>() {
-			@Override
-			protected void configure() {
-				map().setStreet(source.getStreet());
-				map().setCity(source.getCity());
-				map().setState(source.getState());
-				map().setZipCode(source.getZipCode());
-			}
-		});
-		return modelMapper;
+		return new ModelMapper();
 	}
 }
