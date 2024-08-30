@@ -1,5 +1,6 @@
 package com.belajar.restapi.dto;
 
+import com.belajar.restapi.models.entities.User;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -12,8 +13,6 @@ import java.time.LocalDate;
 
 @Data
 public class ProfileData {
-
-
     @NotBlank(message = "First name required")
     private String firstName;
 
@@ -31,7 +30,8 @@ public class ProfileData {
     @Valid
     private AddressDto address;
 
-
     @Past(message = "Birth date must be in the past")
     private LocalDate birthDate;
+
+    private Long userID;
 }

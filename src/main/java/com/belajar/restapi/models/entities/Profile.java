@@ -1,6 +1,6 @@
 package com.belajar.restapi.models.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
@@ -12,16 +12,14 @@ import java.time.LocalDateTime;
 
 @Entity
 @Data
+@Table(name = "tbl_profile")
 public class Profile implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String firstName;
-
     private String lastName;
-
     private String bio;
     private String avatarUrl;
     private String phone;
@@ -37,8 +35,10 @@ public class Profile implements Serializable {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-    @OneToOne(mappedBy = "profile_fk")
-    @JsonBackReference
-    private User user_fk;
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private User userFK;
+
+
 }
 
