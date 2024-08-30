@@ -1,12 +1,11 @@
 package com.belajar.restapi.models.entities;
 
 import jakarta.persistence.Embeddable;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+
 
 @Embeddable
-@Setter
-@Getter
+@Data
 public class Address {
     private String street;
     private String city;

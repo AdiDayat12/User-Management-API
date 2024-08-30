@@ -1,8 +1,9 @@
 package com.belajar.restapi.dto;
 
-import lombok.Getter;
+import lombok.Data;
 
-@Getter
+
+@Data
 public class AddressDto {
 
     private String street;
