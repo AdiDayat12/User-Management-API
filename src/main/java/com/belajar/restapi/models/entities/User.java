@@ -1,11 +1,8 @@
 package com.belajar.restapi.models.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -17,34 +14,26 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
+@Table(name = "tbl_user")
 public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Username required")
-    @Column(unique = true)
-    @Size(min = 5)
     private String username;
 
-    @NotBlank(message = "Email required")
-    @Email(message = "Email must match the pattern")
-    @Column(unique = true)
     private String email;
 
-    @NotBlank(message = "Password required")
-    @Size(min = 8)
     private String password;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "profileID")
-    @JsonManagedReference
-    private Profile profile_fk;
+    @OneToOne(mappedBy = "userFK", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonBackReference
+    private Profile profile;
 
 
-    @OneToMany(mappedBy = "user_fk", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
+    @OneToMany(mappedBy = "userFK", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @JsonBackReference
     private List<Comment> commentList = new ArrayList<>();
 
 
