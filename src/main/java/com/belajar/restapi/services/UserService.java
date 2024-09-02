@@ -19,7 +19,7 @@ public class UserService {
         return userRepo.save(user);
     }
 
-    public Iterable<User> findALl () {
+    public Iterable<User> findAll () {
         return userRepo.findAll();
     }
 
