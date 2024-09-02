@@ -1,12 +1,14 @@
 package com.belajar.restapi.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -17,12 +19,17 @@ public class Comment implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Size(max = 500, message = "Comment should not exceed 500 characters")
     private String text;
 
-    private LocalDate commentDate;
+    @CreationTimestamp
+    private LocalDateTime commentDateCreation;
 
-    @ManyToOne()
-    @JoinColumn(name = "user_id")
-    private User user_fk;
+    @UpdateTimestamp
+    private LocalDateTime commentDateUpdated;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_FK")
+    @JsonManagedReference
+    private User userFK; // FK from user class or tbl_user
+
 }
