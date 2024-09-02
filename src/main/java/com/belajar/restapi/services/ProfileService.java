@@ -15,4 +15,8 @@ public class ProfileService {
     public Profile save (Profile profile) {
         return profileRepo.save(profile);
     }
+
+    public Iterable<Profile> findAll () {
+        return profileRepo.findAll();
+    }
 }
