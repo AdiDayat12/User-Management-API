@@ -35,7 +35,7 @@ public class Profile implements Serializable {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne
     @JsonManagedReference
     private User userFK;
 
