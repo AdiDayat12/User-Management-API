@@ -1,4 +1,4 @@
-# Simple REST API Application
+# Simple User Management API
 
 ## Description
 
@@ -29,5 +29,5 @@ This is a simple REST API application built using Spring Boot. It demonstrates b
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/AdiDayat12/Simple-CRUD-Springboot.git
+git clone https://github.com/AdiDayat12/User-Management-API.git
 cd your-repository
